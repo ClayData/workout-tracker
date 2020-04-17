@@ -35,13 +35,12 @@ app.get("/api/workouts",(req, res) => {
   
 
 app.get("/api/workouts/range", (req, res) => {
-    Workout.find({date: req.body}, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(data);
-      }
-    });
-  });
+  Workout.find({}).then(dbWorkout => {
+    res.json(dbWorkout);
+   })
+   .catch(err => {
+     res.json(err);
+   })
+ });
 
 }
